@@ -1,0 +1,72 @@
+﻿@model List<Contact>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Contacts</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                First Name 
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                DateAdded
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model)
+        {
+            <tr>
+                <td>
+                    @contact.Firstname
+                </td>
+                <td>
+                    @contact.Lastname
+                </td>
+                <td>
+                    @contact.Phone
+                </td>
+                <td>
+                    @contact.Email
+                </td>
+                <td>
+                    @contact.Category.Name
+                </td>
+                <td>
+                    @contact.DateAdded
+                </td>
+                <td>
+                    <a type="button" class="btn btn-primary" asp-controller="Contact" asp-action="Edit"
+                            asp-route-id="@contact.ID"
+                    asp-route-slug="@contact.Slug">Edit</a>
+
+                    <a type="button" class="btn btn-primary" asp-controller="Contact" asp-action="Details"
+                            asp-route-id="@contact.ID"
+                    asp-route-slug="@contact.Slug">View Details</a>
+
+                    <a type="button" class="btn btn-danger " asp-controller="Contact" asp-action="Delete"
+                       asp-route-id="@contact.ID"
+                       asp-route-slug="@contact.Slug">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
